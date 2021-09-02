@@ -31,6 +31,7 @@ const Search = ({setInfo}:Props) => {
      })
         const json = await response.json()
         setInfo(json)
+        refSearch.current.value = ""
     }
     return (
         <form onSubmit={searchInfo} id="search">
