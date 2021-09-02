@@ -33,7 +33,7 @@ const Search = ({setInfo}:Props) => {
         setInfo(json)
     }
     return (
-        <form onSubmit={searchInfo}>
+        <form onSubmit={searchInfo} id="search">
             <input type="text" placeholder="London" ref = {refSearch} /><button>Buscar</button>
         </form>
     )

@@ -1,0 +1,22 @@
+main{
+    
+    background: #a8dadc;
+    
+    width: fit-content;
+
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+   margin: 10% auto;
+   
+   border-radius: 2.5rem;
+   padding: 1rem;
+    section{
+        border-bottom-left-radius: 2.5rem;
+        border-bottom-right-radius: 2.5rem;
+        p{
+            margin: 1rem;
+        }
+    }
+   
+}
