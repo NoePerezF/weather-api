@@ -16,25 +16,24 @@ interface Info{
     
 }
 interface Props{
-    info:Info
+    info:Info  | {}
 }
 const Card = ({info}:Props) => {
     
+    const showInfo = info as  Info
+    
    
- 
-    
-    
     return (
         
         
         <main>
-          <img src={info.current.condition.icon} alt="" />
+          <img src={showInfo.current.condition.icon} alt="" />
           <section>
-          <p>Pais: {info.location.country}</p>
-          <p>Ciudad: {info.location.name}</p>
-          <p>Temperatura: {info.current.temp_c}°C</p>
-          <p>Nublado: {info.current.cloud}%</p>
-          <p>{info.current.condition.text}</p>
+          <p>Pais: {showInfo.location.country}</p>
+          <p>Ciudad: {showInfo.location.name}</p>
+          <p>Temperatura: {showInfo.current.temp_c}°C</p>
+          <p>Nublado: {showInfo.current.cloud}%</p>
+          <p>{showInfo.current.condition.text}</p>
           </section>
         </main>
     )

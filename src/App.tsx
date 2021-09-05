@@ -15,12 +15,13 @@ current:{
         icon:string
     }
     temp_c:number
-}
+} | {}
 }
 
 function App() {
   const init:Info = {location:{name:"",country:'ini',lat:0},current:{cloud:0,condition:{text:"",icon:""},temp_c:0}}
-  const [info, setinfo] = useState<Info>(init)
+  const [info, setinfo] = useState<Info | {}>(init || {})
+  const [actualLocation, setactualLocation] = useState<boolean>(true)
   useEffect(() => {
     const getInfo = async() =>{
          const response = await fetch('https://api.weatherapi.com/v1/current.json?key=0bf5ab4102624edf8c3213106210109&q=auto:ip&lang=es', { method: 'GET',
@@ -28,10 +29,10 @@ function App() {
          cache: 'default'
       })
          const json:Info = await response.json()
-         console.log(json);
+         
          
          await setinfo(json)
-         console.log(info);
+         
          
          
     }
@@ -43,8 +44,11 @@ function App() {
 },[])
   return (
     <>
-    <Search setInfo = {setinfo}></Search>
-    <Card info={info}></Card>
+    <Search setInfo = {setinfo} setactualLocation={setactualLocation}></Search>
+    {Object.keys(info).length === 0 ? <h1>No se encontraron resultados</h1> : actualLocation ?<> <h1>Ubicacion actual</h1><Card info={info}></Card></>:
+    <Card info={info}></Card>}
+    
+    
     </>
   );
 }

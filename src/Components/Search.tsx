@@ -12,12 +12,13 @@ interface Info{
           icon:string
       }
       temp_c:number
-  }
+  } | {}
   }
 interface Props{
-    setInfo:(info:Info) => void
+    setInfo:(info:Info | {} ) => void
+    setactualLocation:(value:boolean) => void
 }
-const Search = ({setInfo}:Props) => {
+const Search = ({setInfo,setactualLocation}:Props) => {
 
     const refSearch = useRef<HTMLInputElement>(document.createElement("input"))
     const searchInfo = async (e:React.FormEvent<HTMLFormElement>) =>{
@@ -30,8 +31,16 @@ const Search = ({setInfo}:Props) => {
         cache: 'default'
      })
         const json = await response.json()
-        setInfo(json)
+        response.ok ? 
+        
+        //const json = await response.json()
+       
+        setInfo(json) :
+        setInfo({})
+        //console.log(json);
+        
         refSearch.current.value = ""
+        setactualLocation(false)
     }
     return (
         <form onSubmit={searchInfo} id="search">
